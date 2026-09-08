@@ -1,0 +1,34 @@
+<main>
+    <h2>Meus Pedidos</h2>
+
+    @if (loading()) {
+    <p>Carregando pedidos...</p>
+    } @else if (error()) {
+    <p class="error">{{ error() }}</p>
+    } @else if (orders().length === 0) {
+    <p>Você ainda não realizou nenhum pedido.</p>
+    } @else {
+    <section class="orders">
+        @for (order of orders(); track order.id) {
+        <article class="order">
+            <h3>Pedido #{{ order.id }}</h3>
+
+            <p>
+                <strong>Entrega:</strong>
+                {{ order.address }}, {{ order.city }}
+            </p>
+
+            <p>
+                <strong>Pagamento:</strong>
+                {{ order.paymentMethod === 'pix' ? 'PIX' : 'Cartão' }}
+            </p>
+
+            <footer>
+                <strong>R$ {{ order.total.toFixed(2) }}</strong>
+                <span> {{ order.createdAt | date:'dd/MM/yyyy HH:mm' }} </span>
+            </footer>
+        </article>
+        }
+    </section>
+    }
+</main>

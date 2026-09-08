@@ -1,0 +1,59 @@
+main {
+  display: grid;
+  place-items: start center;
+  padding: 3rem;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 2rem;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+
+  h2 {
+    margin-top: 0;
+  }
+
+  form {
+    display: grid;
+    gap: 1rem;
+  }
+
+  label {
+    display: grid;
+    gap: 0.4rem;
+  }
+
+  input {
+    padding: 0.7rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+
+  button {
+    margin-top: 0.5rem;
+    padding: 0.8rem 1rem;
+    border: 0;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  p {
+    margin-bottom: 0;
+    margin-top: 1.5rem;
+  }
+}
+
+.error {
+  margin: 1rem 0 0;
+  padding: 0.75rem 1rem;
+
+  color: #b42318;
+  background: #fef3f2;
+  border: 1px solid #fecdca;
+  border-radius: 6px;
+
+  font-size: 0.9rem;
+}

@@ -1,0 +1,24 @@
+<main>
+  <section class="hero">
+    <h2>Nossos Cupcakes</h2>
+    <p>Escolha seus sabores favoritos.</p>
+  </section>
+
+  <section class="catalog">
+    @for (cupcake of cupcakes(); track cupcake.id) {
+      <article class="card">
+        <div class="image-placeholder">
+          <img class="cupcake-image" [src]="cupcake.image" [alt]="cupcake.name"/>
+        </div>
+
+        <h3>{{ cupcake.name }}</h3>
+        <p>{{ cupcake.description }}</p>
+
+        <footer>
+          <strong>R$ {{ cupcake.price }}</strong>
+          <button (click)="cartService.add(cupcake)">Adicionar</button>
+        </footer>
+      </article>
+    }
+  </section>
+</main>

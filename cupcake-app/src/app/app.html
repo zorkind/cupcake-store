@@ -1,0 +1,17 @@
+<header>
+  <h1>Cupcake Shop</h1>
+
+  <nav>
+    <a routerLink="/">Catálogo</a>
+    <a routerLink="/cart">Carrinho ({{ cart.itemCount() }})</a>
+    <a routerLink="/orders">Pedidos</a>
+
+    @if (auth.isAuthenticated()) {
+      <button type="button" (click)="logout()">Sair</button>
+    } @else {
+      <a routerLink="/login">Entrar</a>
+    }
+  </nav>
+</header>
+
+<router-outlet />

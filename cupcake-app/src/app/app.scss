@@ -1,0 +1,36 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: #fafafa;
+  color: #222;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3rem;
+  border-bottom: 1px solid #eee;
+
+  h1 {
+    margin: 0;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+
+    a,
+    button {
+      color: #222;
+      background: none;
+      border: 0;
+      padding: 0;
+      font: inherit;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
+}

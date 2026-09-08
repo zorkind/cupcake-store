@@ -1,0 +1,27 @@
+<main>
+  <section class="auth-card">
+    <h2>Entrar</h2>
+
+    <form (ngSubmit)="submit()">
+      <label>
+        E-mail
+        <input type="email" name="email" [(ngModel)]="email" required>
+      </label>
+
+      <label>
+        Senha
+        <input type="password" name="password" [(ngModel)]="password" required>
+      </label>
+
+      <button type="submit">Entrar</button>
+      @if (error()) {
+      <p class="error">{{ error() }}</p>
+      }
+    </form>
+
+    <p>
+      Ainda não possui uma conta?
+      <a routerLink="/register">Cadastre-se</a>
+    </p>
+  </section>
+</main>

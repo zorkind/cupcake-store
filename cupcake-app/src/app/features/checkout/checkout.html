@@ -1,0 +1,77 @@
+<main>
+  @if (completed()) {
+  <section class="success">
+    <h2>Pedido realizado com sucesso!</h2>
+    <p>Seu pedido foi recebido e será preparado para entrega.</p>
+
+    <a routerLink="/">Voltar ao catálogo</a>
+  </section>
+  } @else {
+  <h2>Finalizar Pedido</h2>
+
+  <section class="checkout">
+    <form (ngSubmit)="finishOrder()">
+      <fieldset>
+        <legend>Entrega</legend>
+
+        <label>
+          Nome
+          <input type="text" [value]="auth.user()?.name" readonly>
+        </label>
+
+        <label>
+          Endereço
+          <input type="text" name="address" [(ngModel)]="address" required>
+        </label>
+
+        <label>
+          Cidade
+          <input type="text" name="city" [(ngModel)]="city" required>
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Pagamento</legend>
+
+        <label>
+          <input type="radio" name="payment" value="pix" [(ngModel)]="paymentMethod">
+          PIX
+        </label>
+
+        <label>
+          <input type="radio" name="payment" value="card" [(ngModel)]="paymentMethod">
+          Cartão
+        </label>
+
+        <p>
+          Pagamento simulado para fins acadêmicos.
+        </p>
+      </fieldset>
+
+      <section class="summary">
+        <h3>Resumo</h3>
+
+        @for (item of cart.items(); track item.cupcake.id) {
+        <p>
+          {{ item.quantity }} × {{ item.cupcake.name }}
+          — R$ {{ (item.cupcake.price * item.quantity).toFixed(2) }}
+        </p>
+        }
+
+        <strong>
+          Total: R$ {{ cart.total().toFixed(2) }}
+        </strong>
+      </section>
+      <section class="actions">
+        @if (error()) {
+        <p class="error">{{ error() }}</p>
+        }
+
+        <button type="submit" [disabled]="submitting()">
+          {{ submitting() ? 'Enviando...' : 'Confirmar pedido' }}
+        </button>
+      </section>
+    </form>
+  </section>
+  }
+</main>
