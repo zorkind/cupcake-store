@@ -18,7 +18,8 @@ app.get('/api/health', (_req, res) => {
 
 app.use('/api/auth', authRouter);
 app.use('/api/products', productsRouter);
+const PORT = Number(process.env.PORT) || 3000;
 
-app.listen(3000, () => {
-  console.log('Cupcake API running on http://localhost:3000');
+app.listen(PORT, () => {
+  console.log('Cupcake API running on http://localhost:' + PORT);
 });
