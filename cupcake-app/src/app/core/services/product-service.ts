@@ -7,7 +7,7 @@ import { Cupcake } from '../models/cupcake';
   providedIn: 'root'
 })
 export class ProductService {
-  private readonly apiUrl = 'http://localhost:3000/api/products';
+  private readonly apiUrl = '/api/products';
 
   constructor(private http: HttpClient) {}
 

@@ -12,7 +12,7 @@ interface LoginResponse {
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly apiUrl = 'http://localhost:3000/api/auth';
+  private readonly apiUrl = '/api/auth';
 
   readonly user = signal<User | null>(null);
 

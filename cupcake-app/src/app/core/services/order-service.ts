@@ -11,7 +11,7 @@ export class OrderService {
   private readonly http = inject(HttpClient);
   private readonly auth = inject(AuthService);
 
-  private readonly apiUrl = 'http://localhost:3000/api/orders';
+  private readonly apiUrl = '/api/orders';
 
   create(order: {
     address: string;
