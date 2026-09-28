@@ -2,6 +2,12 @@
   @if (completed()) {
   <section class="success">
     <h2>Pedido realizado com sucesso!</h2>
+
+    @if (completedOrder(); as order) {
+      <p><strong>Pedido #{{ order.orderId }}</strong></p>
+      <p>Total: R$ {{ order.total.toFixed(2) }}</p>
+    }
+
     <p>Seu pedido foi recebido e será preparado para entrega.</p>
 
     <a routerLink="/">Voltar ao catálogo</a>

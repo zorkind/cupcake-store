@@ -19,6 +19,10 @@ export class Checkout implements OnInit {
   readonly completed = signal(false);
   readonly submitting = signal(false);
   readonly error = signal('');
+  readonly completedOrder = signal<{
+    orderId: number;
+    total: number;
+  } | null>(null);
 
   address = '';
   city = '';
@@ -55,7 +59,8 @@ export class Checkout implements OnInit {
     this.error.set('');
 
     this.orderService.create(order).subscribe({
-      next: () => {
+      next: (result) => {
+        this.completedOrder.set(result);
         this.cart.clear();
         this.completed.set(true);
         this.submitting.set(false);
