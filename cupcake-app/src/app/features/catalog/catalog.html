@@ -16,7 +16,13 @@
 
         <footer>
           <strong>R$ {{ cupcake.price }}</strong>
-          <button (click)="cartService.add(cupcake)">Adicionar</button>
+          <button (click)="addToCart(cupcake)">
+          @if (addedCupcakeId() === cupcake.id) {
+            Adicionado!
+          } @else {
+            Adicionar
+          }
+          </button>
         </footer>
       </article>
     }
