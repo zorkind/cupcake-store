@@ -16,6 +16,7 @@ export class Register {
   confirmPassword = '';
 
   error = signal('');
+  success = signal('');
 
   constructor(
     private auth: AuthService,
@@ -32,7 +33,11 @@ export class Register {
 
     this.auth.register(this.name, this.email, this.password).subscribe({
       next: () => {
-        this.router.navigate(['/login']);
+        this.success.set('Cadastro realizado com sucesso!');
+
+        setTimeout(() => {
+          this.router.navigate(['/login']);
+        }, 1500);
       },
       error: (err) => {
         if (err.status === 409) {

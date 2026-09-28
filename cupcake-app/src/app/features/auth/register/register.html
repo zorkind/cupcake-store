@@ -20,7 +20,9 @@
       @if (error()) {
       <p class="error">{{ error() }}</p>
       }
-
+      @if (success()) {
+        <p class="success">{{ success() }}</p>
+      }
     </form>
 
     <p>
