@@ -6,7 +6,8 @@ import { CartItem } from '../models/cart-item';
   providedIn: 'root'
 })
 export class CartService {
-  private readonly _items = signal<CartItem[]>([]);
+  private readonly storageKey = 'cupcake-cart';
+  private readonly _items = signal<CartItem[]>(this.loadItems());
 
   readonly items = this._items.asReadonly();
 
@@ -35,16 +36,21 @@ export class CartService {
 
       return [...items, { cupcake, quantity: 1 }];
     });
+
+    this.saveItems();
   }
 
   remove(cupcakeId: number): void {
     this._items.update(items =>
       items.filter(item => item.cupcake.id !== cupcakeId)
     );
+
+    this.saveItems();
   }
 
   clear(): void {
     this._items.set([]);
+    this.saveItems();
   }
 
   increase(cupcakeId: number): void {
@@ -55,6 +61,8 @@ export class CartService {
           : item
       )
     );
+
+    this.saveItems();
   }
 
   decrease(cupcakeId: number): void {
@@ -66,6 +74,29 @@ export class CartService {
             : item
         )
         .filter(item => item.quantity > 0)
+    );
+
+    this.saveItems();
+  }
+
+  private loadItems(): CartItem[] {
+    const stored = localStorage.getItem(this.storageKey);
+
+    if (!stored) {
+      return [];
+    }
+
+    try {
+      return JSON.parse(stored) as CartItem[];
+    } catch {
+      return [];
+    }
+  }
+
+  private saveItems(): void {
+    localStorage.setItem(
+      this.storageKey,
+      JSON.stringify(this._items())
     );
   }
 }
